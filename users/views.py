@@ -22,11 +22,11 @@ class SignUpView(View):
 
             hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
             User.objects.create(
-                account = account,
-                nickname = nickname,
-                password = hashed_password,
-                email = email,
-                phone = phone
+                account     = account,
+                nickname    = nickname,
+                password    = hashed_password,
+                email       = email,
+                phone       = phone
             )
 
             return JsonResponse({'message':'SUCCESS'}, status = 201)
