@@ -1,0 +1,36 @@
+import json
+import bcrypt
+
+from django.http import JsonResponse
+from django.views import View
+
+from users.models import User
+from users.validator import *
+
+class SignUpView(View):
+    def post(self,request):
+        data = json.loads(request.body)
+        try:
+            account        = data['account']
+            nickname       = data['nickname']
+            password       = data['password']
+            email          = data['email']
+            phone          = data['phone']
+
+            is_password(password)
+            is_email(email)
+
+            hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+            User.objects.create(
+                account = account,
+                nickname = nickname,
+                password = hashed_password,
+                email = email,
+                phone = phone
+            )
+
+            return JsonResponse({'message':'SUCCESS'}, status = 200)
+
+        except KeyError:
+            return JsonResponse({'message':'KEY_ERROR'}, status = 400)
+
