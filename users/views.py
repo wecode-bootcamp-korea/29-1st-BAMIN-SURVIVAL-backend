@@ -35,11 +35,11 @@ class SignUpView(View):
                 nickname    = nickname,
                 password    = hashed_password,
                 email       = email,
-                phone       = phone
-            )
+                phone       = phone,
+                point       = 100000
+            ) 
 
             return JsonResponse({'message':'SUCCESS'}, status = 201)
 
         except KeyError:
             return JsonResponse({'message':'KEY_ERROR'}, status = 400)
-
