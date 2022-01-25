@@ -1,7 +1,7 @@
 from django.db import models
 
  class User(models.Model):
-     user_id        = models.CharField(max_length=50)
+     account        = models.CharField(max_length=50)
      nickname       = models.CharField(max_length=50)
      password       = models.CharField(max_length=200)
      email          = models.CharField(max_length=100, unique=True)
