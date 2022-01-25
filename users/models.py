@@ -1,7 +1,7 @@
 from django.db import models
 
  class User(models.Model):
-     account        = models.CharField(max_length=50)
+     id             = models.CharField(max_length=50)
      nickname       = models.CharField(max_length=50)
      password       = models.CharField(max_length=200)
      email          = models.CharField(max_length=100, unique=True)
@@ -10,4 +10,4 @@ from django.db import models
      updated_at     = models.DateTimeField(auto_now=True)
 
      class Meta:
-         db_table = 'users' 
+         db_table = 'users'
