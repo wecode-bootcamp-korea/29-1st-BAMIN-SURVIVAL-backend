@@ -17,10 +17,10 @@ class LoginView(View):
             data = json.loads(request.body)
             account = data["account"]
             password = data["password"].encode("utf-8")
-            hashed_password = User.objects.get(account=account).password.encode('utf-8')
+            user = User.objects.get(account=account)
 
-            if not bcrypt.checkpw(password, hashed_password):
-                return JsonResponse({"message": "INVALID_USER"}, status=400)
+            if not bcrypt.checkpw(password, user.password.encode(‘utf-8’)):
+                return JsonResponse({“message”: “INVALID_USER”}, status=400)
 
             access_token = jwt.encode({"id": account} SECRET_KEY, ALGORITHM)
 
