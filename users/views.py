@@ -20,6 +20,10 @@ class SignUpView(View):
             is_password(password)
             is_email(email)
 
+            if User.objects.filter(account=account).exists():
+                return JsonResponse({'message':'ACCOUNT ALREADY EXISTS'}, status = 400)
+            if User.objects.filter(nickname=nickname).exists():
+                return JsonResponse({'message':'NICKNAME ALREADY EXISTS'}, status = 400)
             if User.objects.filter(email = email).exists():
                 return JsonResponse({'message':'E-MAIL ALREADY EXISTS'}, status = 400)
             if User.objects.filter(phone = phone).exists():
