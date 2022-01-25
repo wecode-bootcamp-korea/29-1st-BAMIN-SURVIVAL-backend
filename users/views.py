@@ -2,7 +2,7 @@ import Json
 import bcrypt
 import jwt
 
-
+from json.decoder import JSONDecodeError
 from django.core.exceptions import ValidationError
 from django.http            import JsonResponse
 from django.views           import View
@@ -19,7 +19,7 @@ class LoginView(View):
             password = data["password"].encode("utf-8")
 
             user = User.objects.get(account=account)
-            hashed_password = User.objects.get(email=email).password.encode('utf-8')
+            hashed_password = User.objects.get(account=account).password.encode('utf-8')
 
             if not bcrypt.checkpw(password, hashed_password):
                 return JsonResponse({"message": "INVALID_USER"}, status=400)
