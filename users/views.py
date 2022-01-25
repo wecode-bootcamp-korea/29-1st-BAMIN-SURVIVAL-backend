@@ -15,14 +15,14 @@ class LoginView(View):
     def post(self, request):
         try:
             data = json.loads(request.body)
-            id = data["id"]
+            user = data["user_id"]
             password = data["password"].encode("utf-8")
-            user = User.objects.get(id=id)
+            user = User.objects.get(user_id=user_id)
 
             if not bcrypt.checkpw(password, user.password.encode(‘utf-8’)):
                 return JsonResponse({“message”: “INVALID_USER”}, status=400)
 
-            access_token = jwt.encode({"id": id} SECRET_KEY, ALGORITHM)
+            access_token = jwt.encode({"id": user_id} SECRET_KEY, ALGORITHM)
 
             return JsonResponse({"access_token": access_token}, status=200)
 
