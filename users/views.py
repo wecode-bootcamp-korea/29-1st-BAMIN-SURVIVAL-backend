@@ -2,9 +2,10 @@ import json
 import bcrypt
 import jwt
 
-from django.http     import JsonResponse
-from django.views    import View
-from django.conf     import settings
+from django.http            import JsonResponse
+from django.views           import View
+from django.conf            import settings
+from django.core.exceptions import ValidationError
 
 from users.models    import User
 from users.validator import email_validation, password_validation
@@ -44,6 +45,8 @@ class SignUpView(View):
             
         except KeyError:
             return JsonResponse({'message' : 'KEY_ERROR'}, status = 400)
+        except ValidationError as e:
+            return JsonResponse({'message' : e.message}, status = 400)
 
 class SignInView(View):
     def post(self,request):
