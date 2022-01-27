@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
-from my_settings import SECRET_KEY, DATABASES
+from my_settings import SECRET_KEY, DATABASES, ALGORITHM
 
 # M1 Only
 import pymysql
@@ -132,6 +132,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 APPEND_SLASH = False
+
+ALGORITHM = ALGORITHM
 
 ##CORS
 CORS_ORIGIN_ALLOW_ALL  =True
