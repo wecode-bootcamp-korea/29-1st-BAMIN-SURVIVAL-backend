@@ -8,7 +8,7 @@ class Category(Base):
     class Meta:
         db_table = 'categories'
 
-class ProductOptions(Base):
+class ProductOption(Base):
     product = models.ForeignKey('Product', on_delete = models.CASCADE)
     price   = models.PositiveIntegerField()
     size    = models.CharField(max_length = 5)
@@ -16,10 +16,16 @@ class ProductOptions(Base):
     option  = models.CharField(max_length = 30)
     agency  = models.CharField(max_length = 10)
 
+    class Meta:
+        db_table = 'product_options'
+
 class Product(Base):
     category = models.ForeignKey('Category', on_delete = models.CASCADE)
     name     = models.CharField(max_length = 50)
     shipping = models.CharField(max_length = 10)
+
+    class Meta:
+        db_table = 'products'
 
 class Image(Base):
     url     = models.URLField(max_length = 200)
