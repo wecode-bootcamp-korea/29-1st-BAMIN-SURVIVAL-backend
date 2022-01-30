@@ -24,6 +24,7 @@ class Product(Base):
     discount_price = models.PositiveIntegerField(null = True)
     is_green       = models.BooleanField(default = False)
     is_sale        = models.BooleanField(default = False)
+    stock          = models.PositiveSmallIntegerField()
 
     class Meta:
         db_table = 'products'
