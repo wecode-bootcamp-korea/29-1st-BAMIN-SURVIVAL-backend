@@ -36,8 +36,7 @@ class CategoryView(View):
     def get(self, request, category_name):
         try:
             category_name = Category.objects.get(name = category_name)
-            get_id = category_name.id
-            category_id = Product.objects.filter(category_id = get_id)
+            category_data = Product.objects.filter(category_id = category_name.id)
             result = [
                 {
                     'id'             : category_item.id,
@@ -50,12 +49,12 @@ class CategoryView(View):
                     'stock'          : category_item.stock,
                     'discount_price' : category_item.discount_price,
                     'discount_rate'  : category_item.discount_rate
-                    }for category_item in category_id]
+                    }for category_item in category_data]
 
-            return JsonResponse({'message' : result}, status = 200)
+            return JsonResponse({'result' : result}, status = 200)
 
         except Category.DoesNotExist:
-            return JsonResponse({'message' : 'CATEGORY_DOES_NOT_EXIST'}, status = 200)
+            return JsonResponse({'message' : 'CATEGORY_DOES_NOT_EXIST'}, status = 400)
 
         except AttributeError:
             return JsonResponse({'message' : 'ATTRIBUTE_ERROR'}, status = 400)
@@ -81,7 +80,7 @@ class ProductDetailView(View):
                 'image'          : product.image_set.all()[0].img_url
             }
 
-            return JsonResponse({'message': result}, status = 200)
+            return JsonResponse({'result': result}, status = 200)
 
         except Product.DoesNotExist:
             return JsonResponse({"message" : "INVALID_PRODUCT"}, status = 404)
