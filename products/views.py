@@ -17,8 +17,7 @@ class ProductAllView(View):
                     'is_sale'        : all.is_sale,
                     'category_id'    : all.category_id,
                     'stock'          : all.stock,
-                    'discount_price' : all.discount_price,
-                    'discount_rate'  : all.discount_rate
+                    'discount_price' : all.discount_price
                     }for all in alls]
 
             return JsonResponse({'result': result}, status = 200) 
@@ -47,8 +46,7 @@ class CategoryView(View):
                     'is_sale'        : category_item.is_sale,
                     'category_id'    : category_item.category_id,
                     'stock'          : category_item.stock,
-                    'discount_price' : category_item.discount_price,
-                    'discount_rate'  : category_item.discount_rate
+                    'discount_price' : category_item.discount_price
                     }for category_item in category_data]
 
             return JsonResponse({'result' : result}, status = 200)
@@ -76,7 +74,6 @@ class ProductDetailView(View):
                 'category_id'    : product.category_id,
                 'stock'          : product.stock,
                 'discount_price' : product.discount_price,
-                'discount_rate'  : product.discount_rate,
                 'image'          : product.image_set.all()[0].img_url
             }
 
