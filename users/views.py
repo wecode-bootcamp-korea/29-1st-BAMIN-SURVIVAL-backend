@@ -39,7 +39,7 @@ class SignUpView(View):
                 password    = hashed_password,
                 email       = email,
                 phone       = phone,
-                point       = 100000
+                point       = 1000000
             ) 
             return JsonResponse({'message' : 'SUCCESS'}, status = 201)
             
