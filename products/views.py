@@ -17,7 +17,8 @@ class ProductAllView(View):
                     'is_sale'        : all.is_sale,
                     'category_id'    : all.category_id,
                     'stock'          : all.stock,
-                    'discount_price' : all.discount_price
+                    'discount_price' : all.discount_price,
+                    'thumbnail_image': [image.img_url for image in all.image_set.all()]
                     }for all in alls]
 
             return JsonResponse({'result': result}, status = 200) 
@@ -46,7 +47,8 @@ class CategoryView(View):
                     'is_sale'        : category_item.is_sale,
                     'category_id'    : category_item.category_id,
                     'stock'          : category_item.stock,
-                    'discount_price' : category_item.discount_price
+                    'discount_price' : category_item.discount_price,
+                    'thumbnail_image': [image.img_url for image in category_item.image_set.all()]
                     }for category_item in category_data]
 
             return JsonResponse({'result' : result}, status = 200)
@@ -65,16 +67,18 @@ class ProductDetailView(View):
         try:
             product = Product.objects.get(id = product_id)
             result = {
-                'id'             : product.id,
-                'name'           : product.name,
-                'shipping'       : product.shipping,
-                'price'          : product.price,
-                'is_green'       : product.is_green,
-                'is_sale'        : product.is_sale,
-                'category_id'    : product.category_id,
-                'stock'          : product.stock,
-                'discount_price' : product.discount_price,
-                'image'          : product.image_set.all()[0].img_url
+                'id'              : product.id,
+                'name'            : product.name,
+                'shipping'        : product.shipping,
+                'price'           : product.price,
+                'is_green'        : product.is_green,
+                'is_sale'         : product.is_sale,
+                'category_id'     : product.category_id,
+                'stock'           : product.stock,
+                'discount_price'  : product.discount_price,
+                'thumbnail_image' : product.image_set.all()[0].img_url,
+                'detail_image'    : product.image_set.all()[0].detail_img_url
+
             }
 
             return JsonResponse({'result': result}, status = 200)
