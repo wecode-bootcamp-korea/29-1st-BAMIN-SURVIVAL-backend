@@ -52,16 +52,21 @@ class SignInView(View):
     def post(self,request):
         try:
             data     = json.loads(request.body)
-            account  = data['account']
             password = data['password']
-            user = User.objects.get(account = account)
+            user     = User.objects.get(account = data['account'])
 
             if not bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
                 return JsonResponse({'message' : 'INVALID_USER'}, status = 401)
 
             token = jwt.encode({'user_id': user.id}, settings.SECRET_KEY, settings.ALGORITHM)
 
-            return JsonResponse({'message' : 'SUCCESS', 'JWT' : token}, status=200)
+            success_message = {
+                'SUCCESS' : {
+                    'ACCESS_TOKEN' : token
+                }
+            }
+
+            return JsonResponse(success_message, status=200)
 
         except KeyError:
             return JsonResponse({'message' : 'KEY_ERROR'}, status=400)
