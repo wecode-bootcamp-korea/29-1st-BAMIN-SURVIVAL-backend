@@ -20,7 +20,6 @@ class Product(Base):
     name           = models.CharField(max_length = 50)
     shipping       = models.CharField(max_length = 10)
     price          = models.PositiveIntegerField()
-    discount_rate  = models.PositiveSmallIntegerField(null = True)
     discount_price = models.PositiveIntegerField(null = True)
     is_green       = models.BooleanField(default = False)
     is_sale        = models.BooleanField(default = False)
