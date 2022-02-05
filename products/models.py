@@ -30,8 +30,9 @@ class Product(Base):
         db_table = 'products'
 
 class Image(Base):
-    img_url = models.URLField(max_length = 200)
-    product = models.ForeignKey('Product', on_delete = models.CASCADE)
+    img_url        = models.URLField(max_length = 200)
+    detail_img_url = models.URLField(max_length = 200)
+    product        = models.ForeignKey('Product', on_delete = models.CASCADE)
 
     class Meta:
         db_table = 'images'
