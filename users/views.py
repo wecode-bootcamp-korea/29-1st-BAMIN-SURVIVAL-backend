@@ -60,9 +60,15 @@ class SignInView(View):
 
             token = jwt.encode({'user_id': user.id}, settings.SECRET_KEY, settings.ALGORITHM)
 
+            users = User.objects.get(id = user.id)
+            result= {
+                'nickname' : users.nickname,
+                'point'    : users.point
+            }
             success_message = {
                 'SUCCESS' : {
-                    'ACCESS_TOKEN' : token
+                    'ACCESS_TOKEN' : token,
+                    'RESULT' : result
                 }
             }
 
