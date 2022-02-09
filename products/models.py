@@ -25,6 +25,7 @@ class Product(Base):
     is_green       = models.BooleanField(default = False)
     is_sale        = models.BooleanField(default = False)
     stock          = models.PositiveSmallIntegerField(null = True)
+    product_option = models.BooleanField(default = False)
 
     class Meta:
         db_table = 'products'
