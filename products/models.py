@@ -20,6 +20,7 @@ class Product(Base):
     name           = models.CharField(max_length = 50)
     shipping       = models.CharField(max_length = 10)
     price          = models.PositiveIntegerField()
+    discount_rate  = models.PositiveSmallIntegerField(null = True)
     discount_price = models.PositiveIntegerField(null = True)
     is_green       = models.BooleanField(default = False)
     is_sale        = models.BooleanField(default = False)
@@ -28,16 +29,22 @@ class Product(Base):
     class Meta:
         db_table = 'products'
 
-class Image(Base):
-    img_url        = models.URLField(max_length = 200)
-    detail_img_url = models.URLField(max_length = 200)
-    product        = models.ForeignKey('Product', on_delete = models.CASCADE)
-
-    class Meta:
-        db_table = 'images'
-
 class Size(models.Model):
     name = models.CharField(max_length = 5)
 
     class Meta:
         db_table = 'sizes'
+
+class ProductImage(Base):
+    image_url        = models.URLField(max_length = 200)
+    detail_image_url = models.URLField(max_length = 200)
+    product          = models.ForeignKey('Product', on_delete = models.CASCADE)
+
+    class Meta:
+        db_table = 'product_images'
+
+class SlideImage(Base):
+    image_url = models.URLField(max_length = 200)
+
+    class Meta:
+        db_table = 'slide_images'
