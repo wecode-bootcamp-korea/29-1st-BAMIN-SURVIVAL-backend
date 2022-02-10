@@ -58,7 +58,7 @@ class SignInView(View):
             if not bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
                 return JsonResponse({'message' : 'INVALID_USER'}, status = 401)
 
-            token = jwt.encode({'user_id': user.id}, settings.SECRET_KEY, settings.ALGORITHM).decode('utf-8')
+            token = jwt.encode({'user_id': user.id}, settings.SECRET_KEY, settings.ALGORITHM)
 
             users = User.objects.get(id = user.id)
             result= {
@@ -83,10 +83,10 @@ class CheckAccountView(View):
     def post(self, request):
         try:
             data = json.loads(request.body)
-            account  = data.get('account' ,None)
+            account  = data.get('account')
             
             if User.objects.filter(account = account).exists():
-                return JsonResponse({'message':'ALREADY EXISTS', 'result' : 'True'}, status = 400)
+                return JsonResponse({'message':'ALREADY EXISTS'}, status = 400)
         
         except KeyError:
             return JsonResponse({'message' : 'KEY_ERROR'}, status = 400)
