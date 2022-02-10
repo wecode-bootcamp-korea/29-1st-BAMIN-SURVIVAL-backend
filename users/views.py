@@ -58,7 +58,7 @@ class SignInView(View):
             if not bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
                 return JsonResponse({'message' : 'INVALID_USER'}, status = 401)
 
-            token = jwt.encode({'user_id': user.id}, settings.SECRET_KEY, settings.ALGORITHM)
+            token = jwt.encode({'user_id': user.id}, settings.SECRET_KEY, settings.ALGORITHM).decode('utf-8')
 
             users = User.objects.get(id = user.id)
             result= {
@@ -78,3 +78,67 @@ class SignInView(View):
             return JsonResponse({'message' : 'KEY_ERROR'}, status=400)
         except User.DoesNotExist:
             return JsonResponse({'message' : 'DOES NOT EXIST USER'}, status = 400)
+
+class CheckAccountView(View):
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            account  = data.get('account' ,None)
+            
+            if User.objects.filter(account = account).exists():
+                return JsonResponse({'message':'ALREADY EXISTS', 'result' : 'True'}, status = 400)
+        
+        except KeyError:
+            return JsonResponse({'message' : 'KEY_ERROR'}, status = 400)
+        except ValueError:
+            return JsonResponse({'message' : 'VALUE_ERROR'}, status = 400)
+        except User.DoesNotExist:
+            return JsonResponse({'message' : 'USER_DOSE_NOT_EXIST'}, status = 400)
+
+class CheckNicknameView(View):
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            nickname  = data.get('nickname' ,None)
+            
+            if User.objects.filter(nickname = nickname).exists():
+                return JsonResponse({'message':'ALREADY EXISTS'}, status = 400)
+
+        except KeyError:
+            return JsonResponse({'message' : 'KEY_ERROR'}, status = 400)
+        except ValueError:
+            return JsonResponse({'message' : 'VALUE_ERROR'}, status = 400)
+        except User.DoesNotExist:
+            return JsonResponse({'message' : 'USER_DOSE_NOT_EXIST'}, status = 400)
+
+class CheckEmailView(View):
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            email  = data.get('email' ,None)
+            
+            if User.objects.filter(email = email).exists():
+                return JsonResponse({'message':'ALREADY EXISTS'}, status = 400)
+
+        except KeyError:
+            return JsonResponse({'message' : 'KEY_ERROR'}, status = 400)
+        except ValueError:
+            return JsonResponse({'message' : 'VALUE_ERROR'}, status = 400)
+        except User.DoesNotExist:
+            return JsonResponse({'message' : 'USER_DOSE_NOT_EXIST'}, status = 400)
+
+class CheckPhoneView(View):
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            phone  = data.get('phone' ,None)
+            
+            if User.objects.filter(phone = phone).exists():
+                return JsonResponse({'message':'ALREADY EXISTS'}, status = 400)
+
+        except KeyError:
+            return JsonResponse({'message' : 'KEY_ERROR'}, status = 400)
+        except ValueError:
+            return JsonResponse({'message' : 'VALUE_ERROR'}, status = 400)
+        except User.DoesNotExist:
+            return JsonResponse({'message' : 'USER_DOSE_NOT_EXIST'}, status = 400)         

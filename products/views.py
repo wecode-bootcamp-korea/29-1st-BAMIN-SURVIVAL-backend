@@ -28,7 +28,7 @@ class ProductListView(View):
                 'is_sale'        : product.is_sale,
                 'stock'          : product.stock,
                 'category_name'  : product.category.name,
-                'thumbnail_image': [image.image_url for image in product.image_set.all()]
+                'thumbnail_image': [image.image_url for image in product.productimage_set.all()]
             }for product in products]
 
             return JsonResponse({'message' : result}, status = 200)

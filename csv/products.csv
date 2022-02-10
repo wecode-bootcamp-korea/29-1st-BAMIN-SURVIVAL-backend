@@ -1,0 +1,33 @@
+name,price,discount_price,discount_rate,shipping,is_green,is_sale,product_option,stock,category_id
+샌드백,35000,35000,10,2500,True,False,False,100,3
+투명망토,23000,23000,30,2500,False,False,False,100,3
+휴대용 산소통,44500,44500,0,2500,True,True,False,100,3
+최고급형 토르 망치,99000,99000,0,2500,False,False,False,100,3
+인피니티 건틀렛,130000,130000,0,2500,False,False,True,100,3
+K9 자주포,190000,180000,0,2500,False,True,True,100,3
+오함마,59000,59000,0,2500,True,False,True,100,3
+휘발유 + 라이터 세트,89000,89000,0,2500,True,False,True,100,3
+불도저,99000000,99000000,0,2500,True,False,True,100,3
+K2 소총,1200000,1200000,0,2500,False,False,True,0,3
+테이저건,87500,87500,0,2500,False,False,False,0,4
+호신용 스프레이,3000,3000,0,2500,True,True,False,0,4
+쌍절곤,5900,5900,0,2500,False,False,False,100,4
+저격용 새총,300,300,0,2500,True,False,False,100,4
+블랙코브라 호신용 전기충격기,45000,45000,0,2500,False,True,False,100,4
+숙취해소제,2200,2200,0,2500,False,False,False,100,4
+책상베게,1500,1500,0,2500,True,False,False,0,4
+빵,1000,1000,0,2500,False,False,False,100,4
+피크닉,500,500,0,2500,False,False,True,100,4
+앞머리 헤어롤,900,900,0,2500,False,False,True,100,4
+가짜 눈 안대,3000,3000,0,2500,False,False,True,100,4
+전투식량,95000,95000,0,2500,False,False,True,100,5
+방독면 방독마스크,149000,149000,0,2500,False,False,True,100,5
+클레이모어 지뢰,876500,876500,0,2500,False,False,False,100,5
+마스크,1500,1500,20,2500,False,False,False,100,5
+알코올티슈,990,990,0,2500,False,False,False,100,5
+위조백신패스,999999,999999,0,2500,False,False,False,100,5
+백신 주사기,35900,35900,0,2500,False,False,True,100,5
+테스트1,15000,15000,10,2500,True,False,True,100,5
+테스트2,15000,15000,100,2500,True,True,True,100,5
+테스트3,15000,15000,15,2500,False,True,True,0,5
+테스트4,15000,15000,45,2500,False,False,True,100,5
